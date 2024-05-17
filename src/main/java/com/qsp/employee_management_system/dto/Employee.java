@@ -31,6 +31,8 @@ public class Employee {
 	private double salary;
 	@Column(name="EmployeeDesignation")
 	private String designation;
+	@Column(name="EmployeeGrade")
+	private char grade;
 	
 
 }

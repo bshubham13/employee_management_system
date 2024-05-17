@@ -37,13 +37,34 @@ public class EmployeeDao {
 		return repo.getByEmail(email);
 	}
 
-	public Employee getEmployee(String userName) {
+	public String getEmployee(String userName, String password) {
 		try {
 			long phone = Long.parseLong(userName);
-			return findEmployee(phone);
+		 	Employee employee= findEmployee(phone);
+			if (employee != null) {
+				if (password.equals(employee.getPassword())) {
+					return "Login Success";
+				} else {
+					return "invalid password";
+				}
+			} else {
+				return "Employee not found"; 
+			}
+			
+			 
 		} catch (Exception e) {
 			String email = userName;
-			return findEmployee(email);
+			Employee employee=findEmployeeByEmail(email); 
+			if (employee != null) {
+				if (password.equals(employee.getPassword())) {
+					return "Login Success";
+				} else {
+					return "invalid password";
+				}
+			} else {
+				return "Employee not found"; 
+			}
+			
 		}
 	}
 	
